@@ -11,117 +11,122 @@ export default function Home() {
   const [buyerScore, setBuyerScore] = useState("");
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start bg-background pt-20 text-foreground">
-      <div className="mb-8 flex flex-col items-center gap-2">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-comment text-4xl font-bold text-white shadow-lg">
-          J
+    <div className="relative min-h-screen bg-background text-foreground">
+      <header className="absolute top-0 right-0 p-8">
+        <h1 className="text-2xl font-bold text-white">رسانت</h1>
+      </header>
+      <div className="flex min-h-screen flex-col items-center justify-start pt-20">
+        <div className="mb-8 flex flex-col items-center gap-2">
+          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-comment text-4xl font-bold text-white shadow-lg">
+            J
+          </div>
+          <p className="text-lg">Jules Verne</p>
         </div>
-        <p className="text-lg">Jules Verne</p>
-      </div>
-      <div className="flex flex-col gap-4">
-        <button
-          onClick={() => setPriceModalOpen(true)}
-          className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-        >
-          استعلام قیمت
-        </button>
-        <button
-          onClick={() => setSellerModalOpen(true)}
-          className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-        >
-          فروشنده امتیاز
-        </button>
-        <button
-          onClick={() => setBuyerModalOpen(true)}
-          className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-        >
-          خریدار امتیاز
-        </button>
-      </div>
-      <AnimatePresence>
-        {priceModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        <div className="flex flex-col gap-4">
+          <button
+            onClick={() => setPriceModalOpen(true)}
+            className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
           >
-            <div className="rounded-md bg-background p-8 text-foreground">
-              <p className="text-right">قیمت: ۱,۰۰۰,۰۰۰ تومان</p>
-              <button
-                onClick={() => setPriceModalOpen(false)}
-                className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-              >
-                بستن
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {sellerModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+            استعلام قیمت
+          </button>
+          <button
+            onClick={() => setSellerModalOpen(true)}
+            className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
           >
-            <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
-              <p className="text-right">
-                اینجانب آمادگی فروش امتیاز به تعداد زیر هستم:
-              </p>
-              <div className="flex items-center gap-2">
+            فروشنده امتیاز
+          </button>
+          <button
+            onClick={() => setBuyerModalOpen(true)}
+            className="rounded-md bg-comment px-4 py-2 text-white shadow-lg"
+          >
+            خریدار امتیاز
+          </button>
+        </div>
+        <AnimatePresence>
+          {priceModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+            >
+              <div className="rounded-md bg-background p-8 text-foreground">
+                <p className="text-right">قیمت: ۱,۰۰۰,۰۰۰ تومان</p>
+                <button
+                  onClick={() => setPriceModalOpen(false)}
+                  className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
+                >
+                  بستن
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {sellerModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+            >
+              <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
+                <p className="text-right">
+                  اینجانب آمادگی فروش امتیاز به تعداد زیر هستم:
+                </p>
+                <div className="flex items-center gap-2">
+                  <input
+                    id="seller-score"
+                    type="number"
+                    value={sellerScore}
+                    onChange={(e) => setSellerScore(e.target.value)}
+                    className="w-full rounded-md bg-current-line px-2 py-1 text-white"
+                  />
+                  <span>ده ماهه</span>
+                </div>
+                <button
+                  onClick={() => setSellerModalOpen(false)}
+                  className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
+                >
+                  تأیید
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {buyerModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+            >
+              <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
+                <p className="text-right">
+                  اینجانب آمادگی خرید امتیاز به تعداد زیر هستم:
+                </p>
                 <input
-                  id="seller-score"
+                  id="buyer-score"
                   type="number"
-                  value={sellerScore}
-                  onChange={(e) => setSellerScore(e.target.value)}
+                  value={buyerScore}
+                  onChange={(e) => setBuyerScore(e.target.value)}
                   className="w-full rounded-md bg-current-line px-2 py-1 text-white"
                 />
-                <span>ده ماهه</span>
+                <button
+                  onClick={() => {
+                    alert(`تعداد امتیاز خریدار: ${buyerScore}`);
+                    setBuyerModalOpen(false);
+                  }}
+                  className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
+                >
+                  تأیید
+                </button>
               </div>
-              <button
-                onClick={() => setSellerModalOpen(false)}
-                className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-              >
-                تأیید
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {buyerModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          >
-            <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
-              <p className="text-right">
-                اینجانب آمادگی خرید امتیاز به تعداد زیر هستم:
-              </p>
-              <input
-                id="buyer-score"
-                type="number"
-                value={buyerScore}
-                onChange={(e) => setBuyerScore(e.target.value)}
-                className="w-full rounded-md bg-current-line px-2 py-1 text-white"
-              />
-              <button
-                onClick={() => {
-                  alert(`تعداد امتیاز خریدار: ${buyerScore}`);
-                  setBuyerModalOpen(false);
-                }}
-                className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
-              >
-                تأیید
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
