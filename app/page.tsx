@@ -10,7 +10,7 @@ export default function Home() {
   const [buyerScore, setBuyerScore] = useState("");
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background text-foreground">
+    <div className="flex min-h-screen flex-col items-center justify-start bg-background pt-20 text-foreground">
       <div className="mb-8 flex flex-col items-center gap-2">
         <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple text-4xl font-bold text-white">
           J
@@ -59,7 +59,7 @@ export default function Home() {
                 id="seller-score"
                 type="number"
                 value={sellerScore}
-                onChange={(e) => setSellerScore(e.g.target.value)}
+                onChange={(e) => setSellerScore(e.target.value)}
                 className="rounded-md bg-current-line px-2 py-1 text-white"
               />
               <span>ده ماهه</span>
