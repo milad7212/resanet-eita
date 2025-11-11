@@ -47,7 +47,7 @@ export default function Home() {
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
           >
             <div className="rounded-md bg-background p-8 text-foreground">
-              <p>قیمت: ۱,۰۰۰,۰۰۰ تومان</p>
+              <p className="text-right">قیمت: ۱,۰۰۰,۰۰۰ تومان</p>
               <button
                 onClick={() => setPriceModalOpen(false)}
                 className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
@@ -66,15 +66,17 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
           >
-            <div className="rounded-md bg-background p-8 text-foreground">
-              <label htmlFor="seller-score">فروشنده امتیاز</label>
+            <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
+              <p className="text-right">
+                اینجانب آمادگی فروش امتیاز به تعداد زیر هستم:
+              </p>
               <div className="flex items-center gap-2">
                 <input
                   id="seller-score"
                   type="number"
                   value={sellerScore}
                   onChange={(e) => setSellerScore(e.target.value)}
-                  className="rounded-md bg-current-line px-2 py-1 text-white"
+                  className="w-full rounded-md bg-current-line px-2 py-1 text-white"
                 />
                 <span>ده ماهه</span>
               </div>
@@ -82,7 +84,7 @@ export default function Home() {
                 onClick={() => setSellerModalOpen(false)}
                 className="mt-4 rounded-md bg-comment px-4 py-2 text-white shadow-lg"
               >
-                بستن
+                تأیید
               </button>
             </div>
           </motion.div>
@@ -96,14 +98,16 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
           >
-            <div className="rounded-md bg-background p-8 text-foreground">
-              <label htmlFor="buyer-score">خریدار امتیاز</label>
+            <div className="flex w-80 flex-col gap-4 rounded-md bg-background p-8 text-foreground">
+              <p className="text-right">
+                اینجانب آمادگی خرید امتیاز به تعداد زیر هستم:
+              </p>
               <input
                 id="buyer-score"
                 type="number"
                 value={buyerScore}
                 onChange={(e) => setBuyerScore(e.target.value)}
-                className="rounded-md bg-current-line px-2 py-1 text-white"
+                className="w-full rounded-md bg-current-line px-2 py-1 text-white"
               />
               <button
                 onClick={() => {
