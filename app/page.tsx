@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-start bg-background pt-20 text-foreground">
       <div className="mb-8 flex flex-col items-center gap-2">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-purple text-4xl font-bold text-white">
+        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-comment text-4xl font-bold text-white">
           J
         </div>
         <p className="text-lg">Jules Verne</p>
@@ -20,19 +20,19 @@ export default function Home() {
       <div className="flex flex-col gap-4">
         <button
           onClick={() => setPriceModalOpen(true)}
-          className="rounded-md bg-purple px-4 py-2 text-white"
+          className="rounded-md bg-comment px-4 py-2 text-white"
         >
           استعلام قیمت
         </button>
         <button
           onClick={() => setSellerModalOpen(true)}
-          className="rounded-md bg-purple px-4 py-2 text-white"
+          className="rounded-md bg-comment px-4 py-2 text-white"
         >
           فروشنده امتیاز
         </button>
         <button
           onClick={() => setBuyerModalOpen(true)}
-          className="rounded-md bg-purple px-4 py-2 text-white"
+          className="rounded-md bg-comment px-4 py-2 text-white"
         >
           خریدار امتیاز
         </button>
@@ -43,7 +43,7 @@ export default function Home() {
             <p>قیمت: ۱,۰۰۰,۰۰۰ تومان</p>
             <button
               onClick={() => setPriceModalOpen(false)}
-              className="mt-4 rounded-md bg-purple px-4 py-2 text-white"
+              className="mt-4 rounded-md bg-comment px-4 py-2 text-white"
             >
               بستن
             </button>
@@ -66,7 +66,7 @@ export default function Home() {
             </div>
             <button
               onClick={() => setSellerModalOpen(false)}
-              className="mt-4 rounded-md bg-purple px-4 py-2 text-white"
+              className="mt-4 rounded-md bg-comment px-4 py-2 text-white"
             >
               بستن
             </button>
@@ -89,7 +89,7 @@ export default function Home() {
                 alert(`تعداد امتیاز خریدار: ${buyerScore}`);
                 setBuyerModalOpen(false);
               }}
-              className="mt-4 rounded-md bg-purple px-4 py-2 text-white"
+              className="mt-4 rounded-md bg-comment px-4 py-2 text-white"
             >
               تأیید
             </button>
