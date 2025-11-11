@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Header from "./components/Header";
 
 export default function Home() {
   const [priceModalOpen, setPriceModalOpen] = useState(false);
@@ -12,10 +13,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
-      <header className="absolute top-0 right-0 p-8">
-        <h1 className="text-2xl font-bold text-white">رسانت</h1>
-      </header>
-      <div className="flex min-h-screen flex-col items-center justify-start pt-20">
+      <Header />
+      <div className="flex min-h-screen flex-col items-center justify-start pt-28">
         <div className="mb-8 flex flex-col items-center gap-2">
           <div className="flex h-24 w-24 items-center justify-center rounded-full bg-comment text-4xl font-bold text-white shadow-lg">
             J
