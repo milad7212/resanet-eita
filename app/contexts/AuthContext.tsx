@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define the type for the user object
 interface User {
@@ -36,11 +36,23 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (error) {
+      console.error('Failed to load user from localStorage:', error);
+    }
+    setIsInitialLoad(false);
+  }, []);
 
   // Mock login function
   const login = async (email: string, password: string) => {
     // In a real app, you'd make an API call here
-    // For now, we'll use a mock user if credentials are "correct"
     if (email === 'test@example.com' && password === 'password') {
       const mockUser: User = {
         id: 1,
@@ -48,6 +60,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         email: 'test@example.com',
       };
       setUser(mockUser);
+      try {
+        localStorage.setItem('user', JSON.stringify(mockUser));
+      } catch (error) {
+        console.error('Failed to save user to localStorage:', error);
+      }
     } else {
       throw new Error('نام کاربری یا رمز عبور اشتباه است.');
     }
@@ -56,7 +73,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   // Logout function
   const logout = () => {
     setUser(null);
+    try {
+      localStorage.removeItem('user');
+    } catch (error) {
+      console.error('Failed to remove user from localStorage:', error);
+    }
   };
+
+  if (isInitialLoad) {
+    return null; // Or a loading spinner
+  }
 
   const value = {
     isAuthenticated: !!user,

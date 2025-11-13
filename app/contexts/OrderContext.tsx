@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { CartItem } from './CartContext';
 
 // Define the type for a single order
@@ -36,6 +36,29 @@ interface OrderProviderProps {
 
 export const OrderProvider = ({ children }: OrderProviderProps) => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    try {
+      const storedOrders = localStorage.getItem('orders');
+      if (storedOrders) {
+        setOrders(JSON.parse(storedOrders));
+      }
+    } catch (error) {
+      console.error('Failed to load orders from localStorage:', error);
+    }
+    setIsInitialLoad(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialLoad) {
+      try {
+        localStorage.setItem('orders', JSON.stringify(orders));
+      } catch (error) {
+        console.error('Failed to save orders to localStorage:', error);
+      }
+    }
+  }, [orders, isInitialLoad]);
 
   // Add a new order
   const addOrder = (order: Order) => {

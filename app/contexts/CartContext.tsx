@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define the type for a single cart item
 export interface CartItem {
@@ -40,6 +40,31 @@ interface CartProviderProps {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Load cart from localStorage on initial render
+  useEffect(() => {
+    try {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        setCartItems(JSON.parse(storedCart));
+      }
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error);
+    }
+    setIsInitialLoad(false);
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (!isInitialLoad) {
+      try {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+      } catch (error) {
+        console.error('Failed to save cart to localStorage:', error);
+      }
+    }
+  }, [cartItems, isInitialLoad]);
 
   // Add item to cart or update quantity if it already exists
   const addToCart = (itemToAdd: CartItem) => {
