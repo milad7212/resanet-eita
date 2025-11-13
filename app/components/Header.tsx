@@ -2,10 +2,22 @@
 
 import Link from "next/link";
 import { useCart } from "@/app/contexts/CartContext";
+import { useAuth } from "@/app/contexts/AuthContext";
+import { useToast } from "@/app/contexts/ToastContext";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const { cartItems } = useCart();
+  const { isAuthenticated, logout } = useAuth();
+  const { showToast } = useToast();
+  const router = useRouter();
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleLogout = () => {
+    logout();
+    showToast('با موفقیت خارج شدید.', 'success');
+    router.push('/');
+  };
 
   return (
     <header className="flex justify-between items-center p-4 bg-gray-800 text-white sticky top-0 z-50">
@@ -30,9 +42,20 @@ export default function Header() {
               )}
             </Link>
           </li>
-          <li>
-            <Link href="/login" className="hover:text-gray-300 transition-colors">ورود</Link>
-          </li>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link href="/profile" className="hover:text-gray-300 transition-colors">پروفایل</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="hover:text-gray-300 transition-colors">خروج</button>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link href="/login" className="hover:text-gray-300 transition-colors">ورود</Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
