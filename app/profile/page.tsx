@@ -40,6 +40,13 @@ export default function ProfilePage() {
         </div>
         {/* Add more user details here in the future */}
       </div>
+
+      <div className="bg-white shadow-md rounded px-8 py-6">
+          <h2 className="text-2xl font-semibold mb-4">داشبورد</h2>
+          <Link href="/profile/orders" className="text-blue-500 hover:underline">
+             مشاهده تاریخچه سفارشات
+          </Link>
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { CartProvider } from "./contexts/CartContext";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { OrderProvider } from "./contexts/OrderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +37,11 @@ export default function RootLayout({
         <AuthProvider>
           <ToastProvider>
             <CartProvider>
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <Footer />
+              <OrderProvider>
+                <Header />
+                <main className="flex-grow">{children}</main>
+                <Footer />
+              </OrderProvider>
             </CartProvider>
           </ToastProvider>
         </AuthProvider>
