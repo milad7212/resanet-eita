@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "دوغ عالیس",
+    "price": 25000,
+    "image": "https://alis.ir/wp-content/uploads/2022/04/1000-gazdar-249x450.png"
+  },
+  {
+    "id": 2,
+    "name": "نوشابه پرتقالی عالیس",
+    "price": 20000,
+    "image": "https://alis.ir/wp-content/uploads/2022/04/1010-gazdar-porteghali-249x450.png"
+  },
+  {
+    "id": 3,
+    "name": "آبمیوه انبه عالیس",
+    "price": 30000,
+    "image": "https://alis.ir/wp-content/uploads/2022/04/1006-anbe-249x450.png"
+  },
+  {
+    "id": 4,
+    "name": "ماءالشعیر لیمو عالیس",
+    "price": 22000,
+    "image": "https://alis.ir/wp-content/uploads/2022/04/1004-limoo-249x450.png"
+  }
+]
